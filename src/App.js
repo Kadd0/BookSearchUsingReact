@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import SearchInput from "./components/SearchInput";
+import { ChakraProvider } from "@chakra-ui/react";
+import Books from "./components/Books";
+import { useState } from "react";
 
 function App() {
+  const [input, setInput] = useState("");
+
+  const handleInputChange = (event) => setInput(event.target.value);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ChakraProvider>
+        <SearchInput handleInputChange={handleInputChange} />
+        <Books input={input} />
+      </ChakraProvider>
     </div>
   );
 }
